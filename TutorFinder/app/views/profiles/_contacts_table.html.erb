@@ -1,0 +1,39 @@
+<% if !@contacts_sorted.blank? %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+     <div class="table-responsive">
+         <table class="table contacts_table pretty contacts_table table-hover">                         
+          <tr>             
+           <th></th>             
+            <th><%= sortable "first_name", "first name" %></th>
+            <th><%= sortable "last_name", "last name" %></th>
+            <th>Remove Contact</th>
+            <th>Request Appointment</th>
+          </tr>
+            <% @contacts_sorted.each do |contact| %>    
+          <tr>
+             
+             <td><%= link_to image_tag(contact.photo.url(:thumb), :class => "img_responsive img-review"), :action => 'member', :id => contact.id  %></td>  
+              <td><%= contact.first_name %></td>  
+              <td><%= contact.last_name %></td>  
+              <td><%= link_to :action => 'remove', :id => @loggedin_user.id, :contact_id => contact.id do%>
+                  <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                  <%end%>
+              </td>
+
+              <% if contact.role != 0 %>
+                  <td><%= link_to :controller => 'requests', :action => 'allnew', :user_id => @loggedin_user.id, :tutor_id => contact.id do %>
+                      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                       <%end%>
+                 </td>
+              <% else %>
+                  <td>Student</td>
+              <% end %>
+          </tr>
+        <% end %>                     
+        </table>   
+    </div>
+    <%= will_paginate @contacts_sorted %>
+<% else %>
+    <p>You don't have any contacts currently, search for new contacts!</p>
+<% end %>

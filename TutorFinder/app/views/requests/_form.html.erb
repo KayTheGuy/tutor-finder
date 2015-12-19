@@ -1,0 +1,53 @@
+<%= form_for @request do |request| %>
+ 
+<% if @request.errors.any? %>
+<div id="error_explanation">
+    <h2>
+        <%= pluralize(@request.errors.count, "error") %> prohibited this request from being sent:
+    </h2>
+    <ul>
+        <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<p>
+    <%= request.hidden_field :tutorID, :value => @tutor_id %>
+</p>
+
+<p>
+    <%= request.hidden_field :studentID, :value => @user_id %>
+</p>
+
+<p>
+    <%= request.label :courseID, 'Course ID:' %><br>
+    <%= request.text_field :courseID %>
+</p>
+
+<p>
+    <%= request.label :apptDate, 'Appointment Date (YYYY-MM-YY):' %><br>
+    <%= request.date_field :apptDate %>
+</p>
+
+<p>
+    <%= request.label :startTime, 'Start Time:' %><br>
+    <%= request.time_field :startTime %>
+</p>
+
+<p>
+    <%= request.label :endTime, 'End Time:' %><br>
+    <%= request.time_field :endTime %>
+</p>
+
+<p>
+    <%= request.label :note, 'Special Request (Notes):' %><br>
+    <%= request.text_area :note %>
+</p>
+
+<p>
+    <%= request.submit %>
+</p>
+
+<% end %>

@@ -1,0 +1,556 @@
+
+---
+connections:
+  columns:
+  - id
+  - user_id
+  - contact_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 2
+    - 1
+    - 2015-12-07 06:04:55.000000000 Z
+    - 2015-12-07 06:04:55.000000000 Z
+  - - 2
+    - 1
+    - 3
+    - 2015-12-07 12:40:32.000000000 Z
+    - 2015-12-07 12:40:32.000000000 Z
+  - - 3
+    - 1
+    - 2
+    - 2015-12-07 12:42:22.000000000 Z
+    - 2015-12-07 12:42:22.000000000 Z
+  - - 4
+    - 1
+    - 4
+    - 2015-12-07 12:42:32.000000000 Z
+    - 2015-12-07 12:42:32.000000000 Z
+  - - 5
+    - 1
+    - 5
+    - 2015-12-07 12:43:23.000000000 Z
+    - 2015-12-07 12:43:23.000000000 Z
+  - - 6
+    - 1
+    - 7
+    - 2015-12-07 12:43:56.000000000 Z
+    - 2015-12-07 12:43:56.000000000 Z
+  - - 7
+    - 1
+    - 11
+    - 2015-12-07 12:44:55.000000000 Z
+    - 2015-12-07 12:44:55.000000000 Z
+
+---
+course_tutors:
+  columns:
+  - id
+  - user_id
+  - course_id
+  - description
+  - created_at
+  - updated_at
+  - rate
+  records: 
+  - - 1
+    - 1
+    - 1
+    - I got A+
+    - 2015-12-07 06:40:21.000000000 Z
+    - 2015-12-07 06:44:02.000000000 Z
+    - 0
+  - - 2
+    - 1
+    - 2
+    - 
+    - 2015-12-07 09:16:41.000000000 Z
+    - 2015-12-07 09:16:41.000000000 Z
+    - 0
+  - - 3
+    - 1
+    - 4
+    - 
+    - 2015-12-07 09:16:46.000000000 Z
+    - 2015-12-07 09:16:46.000000000 Z
+    - 0
+  - - 4
+    - 1
+    - 12
+    - 
+    - 2015-12-07 09:16:51.000000000 Z
+    - 2015-12-07 09:16:51.000000000 Z
+    - 0
+  - - 5
+    - 1
+    - 10
+    - 
+    - 2015-12-07 09:16:54.000000000 Z
+    - 2015-12-07 09:16:54.000000000 Z
+    - 0
+  - - 6
+    - 1
+    - 19
+    - 
+    - 2015-12-07 09:16:59.000000000 Z
+    - 2015-12-07 09:16:59.000000000 Z
+    - 0
+  - - 7
+    - 1
+    - 15
+    - 
+    - 2015-12-07 09:17:03.000000000 Z
+    - 2015-12-07 09:17:03.000000000 Z
+    - 0
+  - - 8
+    - 3
+    - 19
+    - 
+    - 2015-12-07 12:46:08.000000000 Z
+    - 2015-12-07 12:46:08.000000000 Z
+    - 5
+
+---
+courses:
+  columns:
+  - id
+  - department
+  - course_number
+  - course_name
+  - description
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Computing Science
+    - CMPT 275
+    - Software Engineering I
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 2
+    - Computing Science
+    - CMPT 300
+    - Operating System
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 3
+    - Computing Science
+    - CMPT 150
+    - Computer Logics
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 4
+    - Computing Science
+    - CMPT 250
+    - Computer Logics II
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 5
+    - Computing Science
+    - CMPT 371
+    - Networking I
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 6
+    - Mathematics
+    - MATH 251
+    - Calculus III
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 7
+    - Mathematics
+    - MATH 100
+    - Pre-Calculus
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 8
+    - Mathematics
+    - MATH 151
+    - Calculus I
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 9
+    - Mathematics
+    - MATH 152
+    - Calculus II
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 10
+    - Mathematics
+    - MATH 310
+    - Differential Equations
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 11
+    - Engineering Science
+    - ENSC 100
+    - Engineering Ethics
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 12
+    - Engineering Science
+    - ENSC 101
+    - Engineering Writing
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 13
+    - Engineering Science
+    - ENSC 225
+    - Electric Circuit I
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 14
+    - Engineering Science
+    - ENSC 226
+    - Electronic Circuit
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 15
+    - Engineering Science
+    - ENSC 380
+    - Linear System
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 16
+    - Economics
+    - ECON 101
+    - Intro to Economics
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 17
+    - Economics
+    - ECON 103
+    - Macroeconomics
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 18
+    - Economics
+    - ECON 105
+    - Microeconomics
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 19
+    - Economics
+    - ECON 260
+    - Environmental Economics
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 20
+    - Economics
+    - ECON 290
+    - Business Economics
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 21
+    - Web Development
+    - WEB 110
+    - JSON
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 22
+    - Web Development
+    - WEB 230
+    - Rails
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 23
+    - Web Development
+    - WEB 300
+    - HTML
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 24
+    - Web Development
+    - WEB 407
+    - JQuery
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 25
+    - Web Development
+    - WEB 400
+    - Information System
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 26
+    - Web Development
+    - WEB 405
+    - Web Security
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 27
+    - Web Development
+    - WEB 408
+    - Java Script
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 28
+    - Web Development
+    - WEB 320
+    - Server Coding
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 29
+    - Computing Science
+    - CMPT 100
+    - Basic Programming
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+  - - 30
+    - Computing Science
+    - CMPT 347
+    - Java Programming
+    - ''
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:17.000000000 Z
+
+---
+requests:
+  columns:
+  - id
+  - tutorID
+  - studentID
+  - courseID
+  - apptDate
+  - note
+  - created_at
+  - updated_at
+  - startTime
+  - endTime
+  - isConfirmed
+  records: 
+  - - 1
+    - 1
+    - 2
+    - 1
+    - 2015-12-25
+    - Ok!
+    - 2015-12-07 06:41:17.000000000 Z
+    - 2015-12-07 06:41:44.000000000 Z
+    - 2000-01-01 14:00:00.000000000 Z
+    - 2000-01-01 15:00:00.000000000 Z
+    - true
+
+---
+reviews:
+  columns:
+  - id
+  - user_id
+  - tutor_id
+  - course_id
+  - rate
+  - comment
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - 1
+    - 3
+    - 19
+    - 5
+    - Ali really knows what he is doing. He helped me to get an A- in this course.
+    - 2015-12-07 13:23:52.000000000 Z
+    - 2015-12-07 13:23:52.000000000 Z
+
+---
+users:
+  columns:
+  - id
+  - first_name
+  - last_name
+  - email
+  - tel_number
+  - password_digest
+  - role
+  - is_admin
+  - created_at
+  - updated_at
+  - photo_file_name
+  - photo_content_type
+  - photo_file_size
+  - photo_updated_at
+  records: 
+  - - 1
+    - Kayhan
+    - Dehghani
+    - kdehghan@sfu.ca
+    - '7788583785'
+    - $2a$10$TuMSn8pa868Ljt8POUlKkOAWdZm1TiYUtPU7Q5D83/HxRCOoCO27K
+    - 2
+    - false
+    - 2015-12-07 03:20:57.000000000 Z
+    - 2015-12-07 12:42:04.000000000 Z
+    - keyhan.png
+    - image/png
+    - 72254
+    - 2015-12-07 12:42:04.000000000 Z
+  - - 2
+    - Savio
+    - Lam
+    - yklam@sfu.ca
+    - '7788828624'
+    - $2a$10$YqgJyUzsmfvM1moFe9YeBOpYa6JmACcw9NqC/20T2HgKRoEttScRO
+    - 2
+    - false
+    - 2015-12-07 06:04:29.000000000 Z
+    - 2015-12-07 06:12:00.000000000 Z
+    - savio.png
+    - image/png
+    - 75161
+    - 2015-12-07 06:12:00.000000000 Z
+  - - 3
+    - Ali
+    - Taghavi
+    - ataghavi@sfu.ca
+    - '7788828624'
+    - $2a$10$08LcJhOUJeWWZWIuTge1EO36ulZ3rgCbfEDWVNVLT7FxgtNOlOKCK
+    - 1
+    - false
+    - 2015-12-07 06:13:14.000000000 Z
+    - 2015-12-07 12:45:48.000000000 Z
+    - Ali.png
+    - image/png
+    - 73020
+    - 2015-12-07 12:45:48.000000000 Z
+  - - 4
+    - Arsalan
+    - Nor
+    - anoruz@sfu.ca
+    - '7788828624'
+    - $2a$10$Uassm1ZSL3UJjB2BML5AGucklEJadi9PRcx.dPo7.F5nvr8PIFYBa
+    - 0
+    - false
+    - 2015-12-07 06:17:12.000000000 Z
+    - 2015-12-07 06:17:12.000000000 Z
+    - Arsalan.png
+    - image/png
+    - 70747
+    - 2015-12-07 06:17:12.000000000 Z
+  - - 5
+    - Siavosh
+    - Shirgir
+    - sshirgir@sfu.ca
+    - '7777777777'
+    - $2a$10$XmO9mkDXIJ9znbbuH7P3xuCLjtCnaxGaBpEXoHUcZVqvKtcpsxOVK
+    - 2
+    - false
+    - 2015-12-07 06:17:56.000000000 Z
+    - 2015-12-07 06:17:56.000000000 Z
+    - siavosh.png
+    - image/png
+    - 78689
+    - 2015-12-07 06:17:56.000000000 Z
+  - - 6
+    - Greg
+    - Baker
+    - ggbaker@sfu.ca
+    - '7786543785'
+    - $2a$10$XcIlSjcPAabSYTnIzmrpPeprYCss7/xOA/Qqgxo9ZMesm6eyxJaz2
+    - 0
+    - false
+    - 2015-12-07 09:07:44.000000000 Z
+    - 2015-12-07 09:07:44.000000000 Z
+    - 
+    - 
+    - 
+    - 
+  - - 7
+    - James
+    - Jones
+    - jjones@sfu.ca
+    - ''
+    - $2a$10$es5wSZE2iLOMhn8ie5t8zeYD9XENG0UEgRqEFgEFvDH3.g5f2AGry
+    - 2
+    - false
+    - 2015-12-07 09:08:26.000000000 Z
+    - 2015-12-07 09:08:26.000000000 Z
+    - 2.jpg
+    - image/jpeg
+    - 14401
+    - 2015-12-07 09:08:26.000000000 Z
+  - - 8
+    - Franklin
+    - Zabiela
+    - fzabiela@sfu.ca
+    - ''
+    - $2a$10$fUN1e1QRBHNGjmVYt56BtOVLavShyA2A6fiARkEo1e.6KTskaE2Eq
+    - 1
+    - false
+    - 2015-12-07 09:09:11.000000000 Z
+    - 2015-12-07 09:09:11.000000000 Z
+    - 1.jpg
+    - image/jpeg
+    - 11310
+    - 2015-12-07 09:09:11.000000000 Z
+  - - 9
+    - Susan
+    - Ameria
+    - sameria@sfu.ca
+    - '7786457364'
+    - $2a$10$gse3J9xN0Xax5HFDU5Hure1aq3mKaqPxLNxxBeGJbKXqZ0wp7A2bO
+    - 2
+    - false
+    - 2015-12-07 09:09:51.000000000 Z
+    - 2015-12-07 09:09:51.000000000 Z
+    - 3.jpg
+    - image/jpeg
+    - 12159
+    - 2015-12-07 09:09:51.000000000 Z
+  - - 10
+    - Leila
+    - Hatami
+    - lihamati@sfu.ca
+    - ''
+    - $2a$10$J5QZ2bVc1rAX3Mt3HTWFnOOyh/gTZanBkzyWWmAmS8b6k/gYsv81C
+    - 0
+    - false
+    - 2015-12-07 09:14:03.000000000 Z
+    - 2015-12-07 09:14:20.000000000 Z
+    - download_(1).jpeg
+    - image/jpeg
+    - 4404
+    - 2015-12-07 09:14:19.000000000 Z
+  - - 11
+    - Jack
+    - Peterson
+    - jpeter@sfu.ca
+    - ''
+    - $2a$10$aTiJic4jsTvMqubJwB5keuP20qGJP6zLbOvknJzB/LVNZ4vrTVRNe
+    - 2
+    - false
+    - 2015-12-07 09:14:53.000000000 Z
+    - 2015-12-07 09:14:53.000000000 Z
+    - download.jpeg
+    - image/jpeg
+    - 11008
+    - 2015-12-07 09:14:53.000000000 Z

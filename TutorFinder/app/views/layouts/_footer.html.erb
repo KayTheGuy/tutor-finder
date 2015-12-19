@@ -1,0 +1,57 @@
+<!-- Footer area -->
+<div class="mainfooter">
+<footer class="top-spacer bottom-spacer">   
+      <!-- Footer buttons -->
+      <div class="row footerLinks">
+            <div class="col-md-2 col-xs-6 footer-content top-spacer">
+                <u>WEBSITE</u><br><br>
+                <a href="index.html">HOME</a><br>
+              <%= link_to('ABOUT',{:controller => 'home',:action => 'about'})%><br>
+              <%= link_to('TEAM',{:controller => 'home',:action => 'team'})%><br>
+            </div>
+            <div class="col-md-5 col-xs-6 top-spacer">
+                <div class="row">                    <div class="col-sm-3 footer-content">
+                    <%= link_to( "https://www.facebook.com", :target => "_blank", :class => "navbar-brand top-spacer") do%>
+                        <%= image_tag("facebook.png", :alt => "facebook", :class => "img-responsive TF-logo") %>
+                        <% end %>
+                    </div>
+                    <div class="col-sm-3 footer-content">
+                        <%= link_to( "https://plus.google.com/", :target => "_blank", :class => "navbar-brand top-spacer") do%>
+                        <%= image_tag("googleplus.png", :alt => "googleplus", :class => "img-responsive TF-logo") %>
+                        <% end %>
+                    </div>
+                    <div class="col-sm-3 footer-content">
+                        <%= link_to( "https://www.twitter.com", :target => "_blank", :class => "navbar-brand top-spacer") do%>
+                        <%= image_tag("twitter.png", :alt => "twitter", :class => "img-responsive TF-logo") %>
+                        <% end %>
+                    </div>
+                    <div class="col-sm-3 footer-content">
+                        <%= link_to( "https://www.linkedin.com", :target => "_blank", :class => "navbar-brand top-spacer") do%>
+                        <%= image_tag("linkedin.png", :alt => "linkedin", :class => "img-responsive TF-logo") %>
+                        <% end %>
+                    </div>
+                </div>
+           </div>
+            
+
+            <div class="col-md-5 top-spacer">
+                <div class="vcard">
+                    <p class="fn"><a style="color:#0f0; font-size:1.4em;" href="index.php">Tutor Finder</a><p>
+                    <div class="adr" style="color:#eee;">
+                        <span class="street-address">8888 University Dr.</span><br>
+                        <span class="region">Burnaby, BC  </span>
+                        <span class="country-name">Canada</span>
+                    </div>
+                        <span class="tel"><a href="tel:7788913070">Tel:(778)891-30-70</a></span><br>
+                        <span class="tel"><a href="fax:">Fax:(778)891-30-70</a></span><br>
+                        <span class="tel"><a href="customer_services@tutorfinder.ca">Email: customer_services@tutorfinder.ca</a></span>
+                 </div>
+</div>
+
+        </div>
+</footer> 
+
+<div class="row" id="copyrights">
+    <p class="pull-left"> &copy; 2016 SASKA group - CMPT 470</p> 
+</div>
+</div>

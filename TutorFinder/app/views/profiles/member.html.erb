@@ -1,0 +1,234 @@
+<% @page_title = "#{@member.first_name}" %>
+<% if @member.role == 1 || @member.role == 2 %>
+<div class="row">
+    <div class="col-sm-4">
+          <div class="well">
+                   <ul  class="list-unstyled">
+                      <li>
+                  <%= image_tag(@member.photo.url(:small), :class => "img_responsive")  %></li>
+                       <li><%= @member.first_name %> <%= @member.last_name %></li>
+                       <li><a href="<%= @member.email %>">Email: <%= @member.email %></a></li>
+                       <% if @member.role == 0 %> <li class = "label label-tf">Student</li>
+                       <% elsif @member.role == 1 || @loggedin_user.role == 2 %> <li class = "label label-tf">Tutor</li>
+                       <% end %> 
+                    </ul>   
+                    
+                        <% if @connection_status == false %>
+                            <%= link_to("Add contact", {:action => 'add', :id => @loggedin_user.id, :contact_id => @member.id}, :class => "btn btn-success")%>
+                        <% elsif @connection_status == true %> 
+                            <%= link_to("Remove contact", {:action => 'remove', :id => @loggedin_user.id, :contact_id => @member.id}, :class => "btn btn-danger")%>
+                        <% end %>
+          </div><hr>
+           <div class="well">
+                <h4><%= @member.first_name %>'s contacts</h4>
+                <ul class="list-group">
+                <% @member_contacts.each do |contact| %> 
+                    <li class="list-group-item">  
+                        <%= link_to image_tag(contact.photo.url(:thumb), :class => "img_responsive img-review"), :action => 'member', :id => contact.id  %>
+                        <%= link_to :action => 'member', :id => contact.id, :class => "btn btn-default" do%>
+                        <%= contact.first_name%> <%= contact.last_name%>
+                        <% end %> 
+                    </li>
+                <% end %> 
+                </ul>     
+            </div>  
+    </div>
+    <div class="col-sm-8">
+        <div class="well">   
+            <% if @member_courses.blank? %>
+                 <p><%= @member.first_name %> has no courses</p>
+            <% else %>
+                 <h4><%= @member.first_name %>'s Courses</h4>
+                <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <th>Course</th>
+                        <th>Title</th>
+                        <th>Score</th>
+                        <th>Rate</th>
+                    </tr>
+                    <% @member_courses.each_with_index do |course_tutor , index| %>
+                    <% course = @courses.find(course_tutor.course_id)%>
+                    <tr>
+                        <td><%= course.course_number %></td>
+                        <td><%= course.course_name %></td>
+                        <td>
+                        <% 
+                            if course_tutor.rate  == 0
+                                 %>Not Rated<%
+                            else 
+                                (1..course_tutor.rate.round ).each do |i|
+                                     %><span class='glyphicon glyphicon-star' aria-hidden='true'></span><%
+                                 end
+                            end
+                        %>
+                        </td>
+                        <td><!-- Button trigger modal -->
+                            <button  class ="open-rating-modal" type="button" 
+                               data-toggle="modal" 
+                               data-action="submit" 
+                               data-target="#submitReview" 
+                               data-userId="<%= @loggedin_user.id %>"
+                               data-TutorId="<%= @member.id %>" 
+                               data-courseId="<%= course_tutor.course_id %>"
+                               data-courseName="<%= course.course_number %>">
+                                <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+                            </button>
+                        </td>
+                    </tr>
+                   <% end %>
+                  </table>
+                 </div>
+            <% end %>
+        </div>
+        <hr>
+        <div class="well">
+        <h4><%= @member.first_name %>'s Reviews</h4> 
+            <% if @member_reviews.blank? %>
+                 <p><%= @member.first_name %> has not been reviewed</p>
+            <% else %>
+                <div id="reviews_table"><%= render 'reviews_table' %></div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<% elsif @member.role == 0 %>
+
+<div class="row">
+        <div class="col-sm-2 col-xs-0"></div>
+        <div class="col-sm-4 col-xs-0">
+          <div class="well">
+                   <ul  class="list-unstyled">
+                      <li>
+                  <%= image_tag(@member.photo.url(:small), :class => "img_responsive")  %></li>
+                       <li><h3><%= @member.first_name %> <%= @member.last_name %></h3></li>
+                       <li><a href="<%= @member.email %>">Email: <%= @member.email %></a></li>
+                       <% if @member.role == 0 %> <li class = "label label-tf">Student</li>
+                       <% elsif @member.role == 1 || @loggedin_user.role == 2 %> <li class = "label label-tf">Tutor</li>
+                       <% end %> 
+                    </ul>   
+                    
+                        <% if @connection_status == false %>
+                            <%= link_to("Add contact", {:action => 'add', :id => @loggedin_user.id, :contact_id => @member.id}, :class => "btn btn-success")%>
+                        <% elsif @connection_status == true %> 
+                            <%= link_to("Remove contact", {:action => 'remove', :id => @loggedin_user.id, :contact_id => @member.id}, :class => "btn btn-danger")%>
+                        <% end %>
+          </div>
+       </div>
+       <div class="col-sm-5 col-xs-0">
+           <div class="well">
+                <h4><%= @member.first_name %>'s contacts</h4><hr>
+                    <% if !(@member_contacts.blank?) %>
+                    <ul class="list-group">
+                    <% @member_contacts.each do |contact| %> 
+                        <li class="list-group-item">  
+                            <%= link_to image_tag(contact.photo.url(:thumb), :class => "img_responsive img-review"), :action => 'member', :id => contact.id  %>
+                            <%= link_to :action => 'member', :id => contact.id, :class => "btn btn-default" do%>
+                            <%= contact.first_name%> <%= contact.last_name%>
+                            <% end %> 
+                        </li>
+                    <% end %> 
+                    </ul>    
+                   <% else %> 
+                       <p><%= @member.first_name %> has to contacts yet!</p>
+                   <% end %>
+            </div>      
+        </div> 
+        <div class="col-sm-2 col-xs-0"></div>
+</div>
+
+<% end %>
+
+<!-- Modal  submit new review-->
+<div class="modal fade" id="submitReview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Rate <%= @member.first_name %>'s abilites in <span class = "course_name"></span> </h4>
+      </div>
+      <div class="modal-body">
+        <div class="row text-center font2">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-2"><span class='click-to-rate glyphicon glyphicon-star-empty' aria-hidden='true' data-rate="1"></span></div>
+            <div class="col-xs-2"><span class='click-to-rate glyphicon glyphicon-star-empty' aria-hidden='true' data-rate="2"></span></div>
+            <div class="col-xs-2"><span class='click-to-rate glyphicon glyphicon-star-empty' aria-hidden='true' data-rate="3"></span></div>
+            <div class="col-xs-2"><span class='click-to-rate glyphicon glyphicon-star-empty' aria-hidden='true' data-rate="4"></span></div>
+            <div class="col-xs-2"><span class='click-to-rate glyphicon glyphicon-star-empty' aria-hidden='true' data-rate="5"></span></div>
+            <div class="col-xs-1"></div>
+        </div>
+        
+        <div class="row" style="padding: 2em;">
+            <%= simple_form_for @review do |f| %>
+              <%= f.error_notification %>
+              <%= f.hidden_field :user_id, error: 'set user id' %>
+              <%= f.hidden_field :tutor_id, error: 'set tutor id' %>
+              <%= f.hidden_field :course_id, error: 'set course id' %>
+              <%= f.hidden_field :rate ,error: 'Choose a rating' %>
+              <%= f.input :comment, as: :text, input_html: { style: 'width:80%; margin-left: auto; margin-right: auto;', :maxlength => "200" } %>
+            
+            <%= f.button :submit do %>
+                <i class="btn btn-primary"></i>
+                Commit
+                <% end %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+//Submit a new review in modal
+$('#submitReview').on('shown.bs.modal', function () {
+  $('#submitReview').focus();    
+}); 
+    
+$( ".open-rating-modal" ).click(function() {
+    
+  $('#review_rate').val(0);    
+  $('#review_comment').val("");  
+  $('.click-to-rate').removeClass("glyphicon-star");
+  $('.click-to-rate').addClass("glyphicon-star-empty");
+    
+  var $coursename = $(this).data("coursename");
+  $('#submitReview .course_name').html($coursename); 
+  $('#review_user_id').val($(this).data("userid"));     
+  $('#review_tutor_id').val($(this).data("tutorid"));     
+  $('#review_course_id').val($(this).data("courseid"));    
+});
+    
+$( ".click-to-rate" ).click(function() {
+  var $ratevalue = $(this).data("rate");
+  $('#rate-value').html($ratevalue); 
+
+    $('.click-to-rate').each(function() {
+          if($(this).data("rate") <= $ratevalue){
+            $(this).removeClass("glyphicon-star-empty");
+            $(this).addClass("glyphicon-star");
+          }
+          else{
+            $(this).removeClass("glyphicon-star");
+            $(this).addClass("glyphicon-star-empty");
+          }
+    });
+     
+  $('#review_rate').val($ratevalue);  
+});
+    
+//edit an existing review in modal
+$( ".open-rating-modal-edit" ).click(function() {
+  var $coursename = $(this).data("coursename");
+  $('#submitReview .course_name').html($coursename); 
+  $('#review_user_id').val($(this).data("userid"));     
+  $('#review_tutor_id').val($(this).data("tutorid"));     
+  $('#review_course_id').val($(this).data("courseid"));  
+  $('#review_rate').val($(this).data("rate"));    
+  $('#review_comment').val($(this).data("comment"));  
+  $('.click-to-rate[data-rate="'+$(this).data("rate")+'"]').click();
+    
+});
+</script>
+

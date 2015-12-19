@@ -1,0 +1,36 @@
+<% @page_title = "Search" %>
+<div class="well">
+   <div class="row top-spacer-bg bottom-spacer-bg">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+            <%= form_tag 'search', :method => 'get', :id => "users_search" do %>
+              <p>
+                  <%= text_field_tag :search, params[:search],:placeholder => 'SEARCH . . . ', :class => 'livesearch' %>
+                  <%= submit_tag "Search", :name => nil, :class => 'btn btn-primary' %>
+              </p>
+            <div id="users_search_table"><%= render 'users_search_table' %></div>
+            <% end %>  
+    </div>
+    <div class="col-md-2">
+<!--        <label class="checkbox-inline"><input type="checkbox" value="">Show Students</label>-->
+    </div>
+</div>
+</div>
+ 
+
+
+<script>
+$(function() {
+  $(document.body).ready(function() {
+      $("#users_search input").keyup(function() {
+            $.get($("#users_search").attr("action"), $("#users_search").serialize(), null, "script");
+            return false;
+      });
+  });
+});
+</script>
+
+ 
+
+
+

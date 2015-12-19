@@ -1,0 +1,32 @@
+<% if !@post.blank? %>
+<div id="post_content" class="well">
+    <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <div class="[ panel panel-default ] panel-google-plus">
+                
+                <div class="panel-heading">
+                    <h3><%= @post.title %></h3>
+                    <div><%= image_tag Post.find(@post.id).photo.url(:thumb) %></div>
+
+                    <h5><span>Shared by <strong> <%= User.find(Post.find(@post.id).user_id).first_name %> <%= User.find(Post.find(@post.id).user_id).last_name %></strong> </span> - <span>Submitted <%= time_ago_in_words(@post.created_at) %> </span>ago <%= link_to '', edit_post_path(@post), class: 'glyphicon glyphicon-pencil' if @current_user.email == User.find(Post.find(@post.id).user_id).email %> 
+		  
+          <%= link_to '', post_path(@post),  class: 'glyphicon glyphicon-trash', method: :delete   if @current_user.email == User.find(Post.find(@post.id).user_id).email %> </h5>
+                </div>
+                <div class="panel-body">
+                    <p class="body"><%= @post.body %></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	<div id="comments">
+		<h3><%= @post.comments.count %> Comments</h3>
+		<%= render @post.comments %>
+
+		<h3>Add a comment:</h3>
+        <%= render "formSubmitComment" %>
+	</div>
+</div>
+    <% else %>
+            <p>There record you are looking for does not exist.</p>
+<% end %>

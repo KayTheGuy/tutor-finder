@@ -1,0 +1,40 @@
+<% @page_title = "Select Tutor" %>
+<div class="well">
+<div class="panel panel-default">
+<% if !@tutors.blank?  %>
+    <div class="panel-heading">Tutors teaching '<%= @course.course_number %>&nbsp;<%= @course.course_name %>'</div>
+	  <div class="table-responsive">
+	  <table class="table" summary="Student course list" >
+		<tr>
+			<th>Name</th>
+			<th>Info</th>
+			<th>Make Appoinment</th>
+		</tr>
+          <% @tutors.each do |x| %>
+		<tr>
+            <td> <%= link_to :controller => "profiles", :action => "member", :id => x.user_id do %> 
+				<%= x.first_name %>&nbsp;<%= x.last_name %><% end %>
+           </td>
+           <td><%= x.description %></td>     
+            <td><%= link_to :controller => "search_tutor",
+                            :action => 'reqst',
+                            :tutor_id => x.user_id,
+                            :cours_id => @course.id do %>
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                <% end %>
+            </td>
+		</tr>
+		<% end %>
+	  </table>
+	</div>
+<% else %>
+	   <div class="panel-body">
+            <p>There's no tutor currently teaching this course.</p>
+      </div>
+<% end %>
+</div>
+</div>
+
+
+
+

@@ -1,0 +1,36 @@
+<% @page_title = "Pending Requests" %>
+<div class="well">
+<h3>You have <%= @numRequests %> Pending Appointment Requests</h3>
+<div class="table-responsive .col-lg-7">
+  <table class="table" summary="Pending Appointment Requests" >
+    <tr>
+        <th>Appointment Date</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Student Name</th>
+        <th>Course Name</th>
+        <th>Notes</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <% @requests.each do |request| %>
+    <% course = Course.find(request.courseID)%>
+    <% user = User.find(request.studentID)%>
+    <tr>
+        <td><%= request.apptDate %></td>
+        <td><%= request.startTime.strftime("%I:%M%p") %></td>
+        <td><%= request.endTime.strftime("%I:%M%p") %></td>
+        <td><%= user.first_name %> <%= user.last_name %></td>
+        <td><%= course.course_number %></td>
+        <td><%= request.note %></td>    
+        <td><%= link_to 'Accept', request_path(request) %></td>
+        <td><%= link_to 'Ignore', request_path(request), method: :delete,
+            data: { confirm: 'Ignored request will be removed permanently. Are you sure?' } %>
+        </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+<div class="col-sm4"></div>
+<div class="col-sm4"></div>
+</div>

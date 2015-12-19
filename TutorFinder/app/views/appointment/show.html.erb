@@ -1,0 +1,44 @@
+
+<div class="well">
+
+    <h3>Appointment Request</h3>
+
+    <p>
+    <strong>Tutor Name:</strong>
+        <%= User.find(@request.tutorID).first_name %> <%= User.find(@request.tutorID).last_name %>
+    </p>
+
+    <p>
+    <strong>Student Name:</strong>
+        <%= User.find(@request.studentID).first_name %> <%= User.find(@request.studentID).last_name %>
+    </p>
+
+    <p>
+    <strong>Course Name:</strong>
+        <%= Course.find(@request.courseID).course_number %>
+    </p>
+
+    <p>
+    <strong>Appointment Date:</strong>
+        <%= @request.apptDate %>
+    </p>
+
+    <p>
+    <strong>Start Time:</strong>
+        <%= @request.startTime.strftime("%I:%M%p") %>
+    </p>
+
+    <p>
+    <strong>End Time:</strong>
+        <%= @request.endTime.strftime("%I:%M%p") %>
+    </p>
+
+    <p>
+    <strong>Note:</strong>
+        <%= @request.note %>
+    </p>
+
+    <%= link_to 'Edit Details', edit_appointment_path(@request) %> |
+    <%= link_to 'Back', :action => 'index', :id => session[:user_id] %>
+    
+</div>

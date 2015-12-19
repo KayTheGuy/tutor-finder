@@ -1,0 +1,141 @@
+//Styles for every page of website (Siavosh)
+//General
+.top-spacer-sm    {    margin-top: 1em;    }
+.top-spacer       {    margin-top: 2em;    }
+.top-spacer-bg    {    margin-top: 4em;    }
+
+.bottom-spacer-sm    {    margin-bottom: 1em;    }
+.bottom-spacer       {    margin-bottom: 2em;    }
+.bottom-spacer-bg    {    margin-bottom: 4em;    }
+
+.right-spacer-sm    {    margin-right: 1em ;   }
+.right-spacer       {    margin-right: 2em;    }
+.right-spacer-bg    {    margin-right: 4em;    }
+
+.left-spacer-sm    {    margin-left: 1em;    }
+.left-spacer       {    margin-left: 2em;    }
+.left-spacer-bg    {    margin-left: 4em;    }
+
+.font2    { font-size: 2em }
+.font3    { font-size: 3em }
+.font4    { font-size: 4em }
+.font5    { font-size: 5em }
+
+
+body {
+    height: 100%;
+	font-family: "Droid Sans Mono",verdana, monospace, sans-serif;
+    background-image: url('2.jpg');
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+.form-control{
+	width: 30%;
+}
+
+//new styles
+.pretty tbody th .current {
+  padding-right: 12px;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.pretty tbody th .asc {
+  background-image: url('up_arrow.gif');
+}
+
+.pretty tbody th .desc {
+  background-image: url('down_arrow.gif');
+}
+
+.livesearch{
+    border: 2px solid #EFEFEF;
+    padding: 0.5em;
+    font-size: x-large;
+}
+
+.courseList{
+    width: 40%;
+}
+
+.list-group-item{
+    border: none;
+}
+
+#myCourseList{
+    display: none;
+}
+
+footer{
+    background-color: #222;
+    color: #999;
+    border-radius: 15px;
+    padding: 0em 0em 1em 5em;
+}
+footer a{
+    color: #888;
+}
+
+footer a:hover{
+    color: #fff;
+}
+
+#copyrights {
+    color: #888;
+	font-size: 0.8em;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+#map { 
+  width: 100%;
+  height: 40em;
+  margin: 80px auto;
+  border: 1px solid grey;
+}
+.glyphicon-star{
+    color: #AD7A00;
+}
+.review-comment{
+    padding: 4em;
+    background: #eee;
+}
+.TF-logo{
+    max-height: 45px;
+    margin-top: -12px;
+    border-radius: 40px;
+}
+.TF-logo:hover{
+    box-shadow: 1px 1px 10px 1px #4A4A4A;
+}
+.well h2 {
+  font-style: italic;
+}
+.click-to-rate{
+    cursor: pointer;
+    text-shadow: 0px 0px 3px #020201;
+}
+.click-to-rate:hover{
+    text-shadow: 0px 0px 10px #020201;
+}
+.table-scroll{
+    max-height: 300px;
+    overflow: scroll;
+}
+.img-review{
+    max-width: 50px;
+    border-radius: 30px;
+}
+
+/*//responsivity*/
+
+@media (max-width:769px ){
+    #map { height: 20em;}
+}
+@media (min-width: 769px) and (max-width:1200px ){
+    
+}
+@media (min-width: 1200px){
+
+}
+

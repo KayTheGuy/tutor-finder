@@ -1,0 +1,77 @@
+<% @page_title = "Home" %>
+   
+<div id="carousel-example-generic" class="carousel fade" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner text-center" role="listbox">
+    <div class="item active">
+      <%= image_tag("carousel-logo.png", :class => "img_responsive center-block", :alt => "Tutor Finder logo")  %>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    <div class="item">
+        <%= image_tag("carousel1.jpg", :class => "img_responsive center-block", :alt => "Carousel Link to about page")  %>
+      <div class="carousel-caption">
+              <%= link_to('What do we do?',{:controller => 'home',:action => 'about'})%>
+      </div>
+    </div>
+    <div class="item">
+        <%= image_tag("carousel2.jpg", :class => "img_responsive center-block", :alt => "Carousel Link to team page")  %>
+      <div class="carousel-caption">
+              <%= link_to('Who are we?',{:controller => 'home',:action => 'team'})%>
+      </div>
+    </div>
+    <div class="item">
+        <%= image_tag("carousel3.jpg", :class => "img_responsive center-block", :alt => "Carousel Link to contact page")  %>
+    </div>
+  </div>
+
+</div>vagra
+
+<div class="row home-search">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        
+             <div class="input-group top-spacer bottom-spacer">
+                  <input class="form-control" id="home-users_search" placeholder="SEARCH FOR A TUTOR . . ."> 
+                 <a class="input-group-addon" href="/profiles/search?search="> 
+                        <span class="glyphicon glyphicon-search" title="Siavosh's Profile"  aria-hidden="true"></span>
+                 </a>
+                        
+            </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+   
+<div class="row">
+   <div class="col-md-2"></div>
+   <div class="col-md-4">
+      <% if !@toptutor.blank? %>
+       <div class="well">
+           <h4> Congratulation to <br /><%= link_to(:controller => 'Profiles', :action => 'member', :id => @toptutor.id) do %>
+                    <%= @toptutor.first_name %> <%= @toptutor.last_name %>
+                <%end%> ! </h4><br />
+                <p>He is the most recent tutor with the<br/> highest rating: <% (1..@maxrate.round ).each do |i|%><span class='glyphicon glyphicon-star' aria-hidden='true'></span><%end%>
+                </p>         
+       </div>
+       <% end %>
+   </div>
+   <div class="col-md-4">
+       <div class="well">
+            <h4> Looking for tutor for a<br />particular course? </h4><br /><br />
+            <%= link_to(:controller => 'Course', :action => 'search_department') do %>
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search By Course<%end%>
+        </div>   
+   </div>
+   <div class="col-md-2"></div> 
+</div> 
+
+
+

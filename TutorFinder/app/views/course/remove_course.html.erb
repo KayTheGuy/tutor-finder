@@ -1,0 +1,22 @@
+<% @page_title = "Remove Course" %>
+<div class="well">
+ <div class="course delete">
+  <h2>Delete Course</h2>
+
+	<%= form_for(:course, :url => {:action => 'delete_course', :id => @course.id}) do |f| %>
+	
+    <p class="alert alert-warning">Are you sure you want to permanently delete '<%= @course.course_number %> <%= @course.course_name %>'?</p>
+
+	<%= button_tag(type: 'submit', class: "btn btn-danger") do %>
+	Delete Course
+	<% end %> &nbsp; 
+   
+    
+    <%= link_to(:controller => 'profiles', :action => 'index', :id => session[:user_id]) do %>
+    <div class="btn btn-primary">Go back</div>
+	<% end %>
+   
+
+  <% end %>
+</div>
+</div>

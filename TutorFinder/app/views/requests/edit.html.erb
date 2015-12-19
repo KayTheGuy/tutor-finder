@@ -1,0 +1,56 @@
+<% @page_title = "Edit Request" %>
+<div class="well">
+
+<h3>Edit Appointment
+</h3>
+
+<%= form_for :request, url: request_path(@request), method: :patch do |request| %>
+
+<% if @request.errors.any? %>
+<div id="error_explanation">
+    <h2>
+        <%= pluralize(@request.errors.count, "error") %> prohibited this request from being sent:
+    </h2>
+    <ul>
+        <% @request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+
+<p>
+    Tutor Name:     <%=User.find(@request.tutorID).first_name%> <%=User.find(@request.tutorID).last_name%><br>
+    Student Name:   <%=User.find(@request.studentID).first_name%> <%=User.find(@request.studentID).last_name%><br>
+    Course Name:    <%=Course.find(@request.courseID).course_number%>    
+</p>
+    
+<p>
+    <%= request.label :apptDate, 'Appointment Date (YYYY-MM-YY):' %><br>
+    <%= request.date_field :apptDate %>
+</p>
+
+<p>
+    <%= request.label :startTime, 'Start Time:' %><br>
+    <%= request.time_field :startTime %>
+</p>
+
+<p>
+    <%= request.label :endTime, 'End Time:' %><br>
+    <%= request.time_field :endTime %>
+</p>
+
+<p>
+    <%= request.label :note, 'Special Request (Notes):' %><br>
+    <%= request.text_area :note, cols: "60", rows: "10" %>
+</p>
+
+<p>
+    <%= request.submit :class => 'btn btn-info' %>
+</p>
+
+<%= link_to 'Back', :back, :class => 'btn btn-primary' %>
+
+<% end %>
+    
+</div>

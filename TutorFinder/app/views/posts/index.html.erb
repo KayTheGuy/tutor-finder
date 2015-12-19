@@ -1,0 +1,30 @@
+<% @page_title = "Blog" %>
+<div class ="well">
+<div class ="row">
+    <div class="col-xs-12 col-md-8">
+        <% if session[:user_id]!= nil%>
+             <%= link_to("Compose a Post", {:action => 'new'}, :class => "btn btn-success") %>
+        <%end%>
+    </div>
+    </div>
+<% @posts.each do |post| %>
+    <div class="row top-spacer">
+            <div class="[ panel panel-default ] panel-google-plus">
+                <div class="panel-heading" >    
+                <div class="row">
+                    <div class ="img-responsive user photo" style="float:left">
+                            <%= image_tag Post.find(post.id).photo.url(:thumb) %>
+                        </div>
+                    </div>
+                    <h3 class="title"><%=post.title %> </h3>
+                    <h5>Posted by <strong><%= User.find(post.user_id).first_name %> <%= User.find(post.user_id).last_name %></strong>  on <span><%= post.created_at.strftime("%B %d, %Y") %> </span>  </h5> 
+                    <%= link_to("View Comments", post , :class => "btn btn-success btn-xs")  %>
+            
+                <div>
+                    <h4> <%= post.body %> </h4>
+                </div>
+                </div>
+    </div>
+    </div>
+<% end %>
+</div>z

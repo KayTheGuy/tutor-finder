@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @page_title%></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+</head>
+<body>
+    <div class="container top-spacer-sm">
+        <div id="header"><%= render 'layouts/navigation' %></div>
+<!--# error bar changing color depending on successfulness-->
+        <% if !flash[:notice].blank? %>
+        <% if flash[:notice].include? "successfully" %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+        <% else %>
+    <div class="alert alert-danger">
+      <%= flash[:error] %><br />
+      <%= flash[:notice] %><br />
+    </div>
+	    <% end %>
+        <% end %>
+        <!-- Page contents-->
+        <div id="content"><%= yield %></div>
+        <%= render 'layouts/footer'%>
+        
+ 
+    </div>
+</body>
+</html>

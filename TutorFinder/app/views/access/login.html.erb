@@ -1,0 +1,14 @@
+<% @page_title = "Login Page" %>
+<div class="well">
+<div class = "login" >
+	<%= form_tag( :action => 'attempt_login' ) do %>	
+		<%= label_tag(:email, 'Email address') %>
+		<%= text_field_tag(:email, nil,class: 'form-control') %><br />
+		<%= label_tag(:password) %>
+        <%= password_field_tag(:password, nil, class: 'form-control') %> <br />
+		<%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+		Log in 
+		<% end %>
+	<% end %>	
+</div>
+</div>

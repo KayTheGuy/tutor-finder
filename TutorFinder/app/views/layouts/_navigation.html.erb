@@ -1,0 +1,55 @@
+<nav class="navbar navbar-inverse">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header ">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <%= link_to({:controller => 'home'}, :class => "navbar-brand") do%>
+        <%= image_tag("logo.png", :alt => "Tutor Finder", :class => "img-responsive TF-logo") %>
+        <% end %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          <li class="<%= 'active' if @page_title == 'About' %>">
+              <%= link_to('About',{:controller => 'home',:action => 'about'})%>
+          </li>
+          <li class="<%= 'active' if @page_title == 'Team' %>">
+              <%= link_to('Team',{:controller => 'home',:action => 'team'})%>
+          </li>
+          <li class="<%= 'active' if @page_title == 'Contact' %>">
+              <%= link_to('Contact',{:controller => 'contacts',:action => 'new'}, :data => { :no_turbolink => true })%>
+          </li>
+          <li class="<%= 'active' if @page_title == 'Blog' %>">
+              <%= link_to('Blog',{:controller => 'posts',:action => 'index'})%>
+          </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <% if session[:user_id] == nil %>
+                <li><%= link_to('Sign up',{:controller => 'users',:action => 'new'})%></li>
+                <li><%= link_to('Log in',{:controller => 'access',:action => 'login'})%></li>
+            <% else %>
+                <li><%= link_to(:controller => 'profiles', :action => 'index', :id => session[:user_id]) do %> 
+                    <span class="glyphicon glyphicon-user" title="<%= session[:user_name] %>'s Profile"  aria-hidden="true"></span><% end %>
+                </li>
+                <li><%= link_to(:controller => 'requests', :action => 'pending', :id => session[:user_id]) do %> 
+                    <span class="glyphicon glyphicon-flag" title="<%= session[:user_name] %>'s Appointment Request"  aria-hidden="true"></span>
+                    <% if Request.exists?(:tutorID => session[:user_id], :isConfirmed => 0) %>
+                        <span class="badge"><%= Request.where(:tutorID => session[:user_id], :isConfirmed => 0).count %></span>
+                    <% end %>
+                    <% end %>
+                </li>
+            <li><%= link_to(:controller => 'appointment', :action => 'index', :id => session[:user_id]) do %> 
+                    <span class="glyphicon glyphicon-calendar" title="<%= session[:user_name] %>'s Calendar"  aria-hidden="true"></span><% end %>
+                </li>
+                <li><%= link_to('Account Setting',{:controller => 'users',:action => 'edit', :id => session[:user_id]})%></li>
+                <li><%= link_to('Log out',{:controller => 'access',:action => 'logout'})%></li>
+            <% end %>
+
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>

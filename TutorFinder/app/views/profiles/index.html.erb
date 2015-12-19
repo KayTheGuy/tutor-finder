@@ -1,0 +1,126 @@
+<% @page_title = "My Profile" %>
+<div class="row">
+   <div class="col-sm-6">
+        <div class="well">
+               <ul  class="list-unstyled">
+                   <li><%= image_tag @loggedin_user.photo.url(:small) %></li>
+                   <li><h3><%= @loggedin_user.first_name %>&nbsp;<%= @loggedin_user.last_name %></h3></li>
+                   <li><%= @loggedin_user.email %></li>
+                   <% if @loggedin_user.role == 0 %> <li class = "label label-tf">Student</li>
+                   <% elsif @loggedin_user.role == 1 || @loggedin_user.role == 2 %> <li class = "label label-tf">Tutor</li>
+                   <% end %> 
+                </ul>
+        </div>
+        <hr>
+        <div class="well"> 
+            <h3>Your Contact List :</h3>  
+            <div id="contacts_table"><%= render 'contacts_table' %></div>
+            <%= link_to("Search users", {:action => 'search'}, :class => "btn btn-success")%>
+        </div>
+    </div>
+
+
+    <div class="col-sm-6">
+    
+        <div class="well">
+            <p> Looking for a tutor for a particular course? </p><br />
+            <%= link_to(:controller => 'Course', :action => 'search_department') do %><div class="btn btn-primary">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search By Course</div><%end%>
+        </div>
+    <!--only visible to tutors-->
+        <hr>
+    <% if @testTutor == 1 %>
+        <div class="well">
+        <p>Want to tutor a new courses? Search and add the course to your list.</p><br/>
+        <!-- Button trigger modal -->
+        <button  class = "btn btn-primary" type="button" data-toggle="modal" data-target="#submitReview" data-course="<%= @departments %>">
+                Select Course
+        </button> 
+         </div>
+        <hr>
+        <div class="well">
+        <p><button class = "btn btn-primary" id="showMyCourseList">Show My Course List</button></p>
+
+
+        <div class="panel panel-default" id="myCourseList">
+        <div class="panel-heading">My courses</div>
+            <% if !@courses.blank? %>
+              <div class="panel-body">
+                    <p>These are the current courses that you are tutoring.</p><hr> 
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>: Remove course from your profile<br>
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>: Modify course description
+                    
+              </div>
+
+              <div class="table-responsive table-scroll">
+              <table class="table" summary="Student course list" >
+                <tr>
+                        <th>Delete</th>
+                        <th>Department</th>
+                        <th>Course</th>
+                        <th>Title</th>
+                        <th>Edit</th>
+                    </tr>
+                    <% @courses.each do |x| %>
+                    <tr>
+                        <td>
+                            <%= link_to(:controller => "course", :action => "remove_course", :id => x.id) do %> 
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            <% end %>
+                        </td>
+                        <td><%= x.department %></td>
+                        <td><%= x.course_number %></td>
+                        <td><%= x.course_name %></td>
+                        <td>
+                            <%= link_to(:controller => "course", :action => "update_course", :id => x.id) do %> 
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <% end %>
+                  </table>
+                </div>
+            <% else %>
+               <div class="panel-body">
+                    <p>You are not tutoring any courses yet. Please add courses to your profile first.</p>
+               </div>
+            <% end %>
+        </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="submitReview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel"> Select Department </h4>
+              </div>
+              <div class="modal-body">
+                    <% if !@departments.blank? %>
+                      <ul class="">
+                          <% @departments.each do |x| %>          
+                                <li class=""> 
+                                    <%= link_to( :controller => 'Course',:action => 'select_course', :department => x ) do %><%= x %><%end%>
+                                </li>
+                            <%end%>
+                      </ul>
+                    <% end %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+        $('#submitReview').on('shown.bs.modal', function () {
+          $('#submitReview').focus()
+        })
+        </script>
+
+
+    <% end %>
+    </div>
+</div>

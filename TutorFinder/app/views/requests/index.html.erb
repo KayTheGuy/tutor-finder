@@ -1,0 +1,43 @@
+<% @page_title = "Appointment Request" %>
+<div class="well">
+
+<h3>Pending Appointment Requests</h3>
+    <div class="row">
+        <div class="table-responsive .col-lg-7">
+          <table class="table table-bordered " summary="Student course list" >
+            <tr>
+                <th></th>
+                <th>TutorID</th>
+                <th>StudentID</th>
+                <th>CourseID</th>
+                <th>Appointment Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Notes</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <% @requests.each do |request| %>
+            <tr>
+                <td>
+                    <%= link_to 'Cancel', request_path(request), method: :delete, data: { confirm: 'Are you sure?' } %> 
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </td>
+                <td><%= request.tutorID %></td>
+                <td><%= request.studentID %></td>
+                <td><%= request.courseID %></td>
+                <td><%= request.apptDate %></td>
+                <td><%= request.startTime.strftime("%I:%M%p") %></td>
+                <td><%= request.endTime.strftime("%I:%M%p") %></td>        
+                <td><%= request.note %></td>    
+                <td><%= link_to 'Show', request_path(request) %></td>
+                <td><%= link_to 'Edit', edit_request_path(request) %></td>
+            </tr>
+            <% end %>
+          </table>
+        </div>
+        <div class="col-sm4"></div>
+        <div class="col-sm4"></div>
+    </div>
+    
+</div>

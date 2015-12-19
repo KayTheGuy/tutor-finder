@@ -1,0 +1,7 @@
+<%= simple_form_for @post do |f| %>
+<%= f.input :title, label: 'Title', error: 'Please provide a title' %>
+<%= f.input :body, label: 'Content', error: 'Please provide you post content' %>
+<%= f.hidden_field :user_id, :hint => 'Leave this field blank!', :value => @current_user.id %>
+<%= f.input :photo, label:'Profile Picture', error: 'Image must be .png or .jpeg' %>
+<%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

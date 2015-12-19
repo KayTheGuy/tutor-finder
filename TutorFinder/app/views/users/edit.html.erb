@@ -1,0 +1,5 @@
+<% @page_title = "Edit Account Info" %>
+<div class="well">
+    <%= render 'form' %> <br />
+    <%= link_to( "Delete Account", {:controller => "users", :action => "deleteUser"}, :method => :post, :class => "btn btn-danger" ) %>
+</div>

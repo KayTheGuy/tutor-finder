@@ -1,0 +1,21 @@
+<% @page_title = "Delete Contact" %>
+<div class="well">
+<div class="account delete">
+  <h2>Delete Account</h2>
+
+    <%= form_for(:user, :url => {:action => 'destroy'}) do |f| %>
+	
+    <p class="alert alert-warning"> Are you sure you want to permanently delete your account?</p>
+
+    <%= link_to(:controller => 'profiles', :action => 'index', :id => session[:user_id]) do %>
+    <div class="btn btn-primary">No. Go Back</div>
+	<% end %> 
+	<hr>
+	
+	<%= button_tag(type: 'submit', class: "btn btn-danger") do %>
+	Yes. Delete Account
+	<% end %>  
+
+  <% end %>
+</div>
+</div>

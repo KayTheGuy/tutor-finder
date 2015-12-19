@@ -1,0 +1,42 @@
+<div class="table-responsive">
+<table class="table pretty">                         
+  <tr>
+    <th></th>
+    <th><%= sortable "first_name", "first name" %></th>
+    <th><%= sortable "last_name", "last name" %></th>
+    <th>Email</th>
+    <th>Average Rate</th>
+    <th>Role</th>
+    <th></th>
+  </tr>
+     <% @users_search.each do |user| %>    
+     <% average_rating = user.course_tutors.average(:rate)%>  
+     <% if user.role == 0
+            user_role = 'student'
+        elsif user.role == 1 or user.role == 2
+            user_role = 'tutor'
+        end
+      %>   
+          <tr data-userrole = "<%= user_role %>"> 
+             <td><%= link_to image_tag(user.photo.url(:thumb), :class => "img_responsive img-review"), :action => 'member', :id => user.id  %></td>  
+              <td><%= user.first_name %></td>
+              <td><%= user.last_name %></td>  
+              <td><%= user.email %></td>  
+              <td><% 
+                    if average_rating == nil 
+                        %>no rating<%
+                    else %> 
+                       <%=average_rating %>
+                    <% end %>
+              </td>   
+              <td><%= user_role %></td>
+              <td><%= link_to :action => 'member', :id => user.id do %>
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+               <%end%>
+              </td>  
+
+          </tr>
+<% end %>                     
+</table> 
+</div>
+<%= will_paginate @users_search %>

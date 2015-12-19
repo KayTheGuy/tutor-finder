@@ -1,0 +1,29 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: ex8_development
+  pool: 5
+  username: root
+  password:
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: ex8_test
+  pool: 5
+  username: root
+  password:
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: ex8_production
+  pool: 5
+  username: root
+  password:
+

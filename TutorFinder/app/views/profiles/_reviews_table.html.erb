@@ -1,0 +1,70 @@
+
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+<div class="table-responsive">
+<table class="table table-hover">
+
+    <% @member_reviews_sorted.each_with_index do |review , index| %>
+    <% course = Course.find(review.course_id)%>
+    <% user = User.find(review.user_id)%>
+    <tr>
+       <td>
+           <%= image_tag(user.photo.url(:thumb), :class => "img_responsive img-review")  %>
+       </td>
+       <td>
+           <ul  class="list-unstyled">
+                <li><%= user.first_name %> <%= user.last_name %></li>
+                <li class="label label-warning"><%= course.course_name %></li>
+                <li class="label label-info">
+                    <% rate = review.rate
+                    puts case rate
+                    when 1
+                        %>very bad<%
+                    when 2
+                        %>bad<%
+                    when 3
+                        %>neutral<%
+                    when 4
+                        %>good<%
+                    when 5
+                        %>very good<%
+                    else
+                        %>no rating<%
+                    end %>
+                </li>
+                <li>
+            
+                    <% if user.id == @loggedin_user.id %> 
+                    <%= link_to(:controller => 'reviews', :action => 'remove', :review_id => review.id) do%>
+                          <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+                        <%end%>
+
+<!--
+                    <a class ="open-rating-modal-edit" type="button" style="cursor:pointer;" 
+                       data-toggle="modal" 
+                       data-action="edit"
+                       data-target="#submitReview" 
+                       data-userId="<%= review.user_id %>"
+                       data-TutorId="<%= review.tutor_id %>" 
+                       data-rate="<%= review.rate %>" 
+                       data-comment="<%= review.comment %>" 
+                       data-courseId="<%= review.course_id %>"
+                       data-courseName="<%= course.course_number %>">
+                        <span class=' glyphicon glyphicon-edit' aria-hidden='true'></span>
+                    </a>
+-->
+
+                    <% else %>   
+                    <% end %>
+
+                </li>
+            </ul>
+        </td>
+        <td colspan=3 class="review-comment"><%= review.comment %></td>
+        
+        
+        </tr>
+   <% end %>
+</table>
+</div>
+<%= will_paginate @member_reviews_sorted %>

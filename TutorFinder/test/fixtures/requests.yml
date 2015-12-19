@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tutorID: 1
+  studentID: 1
+  courseID: 1
+  appointmentDateTime: 2015-11-14 00:30:52
+  note: MyText
+
+two:
+  tutorID: 1
+  studentID: 1
+  courseID: 1
+  appointmentDateTime: 2015-11-14 00:30:52
+  note: MyText

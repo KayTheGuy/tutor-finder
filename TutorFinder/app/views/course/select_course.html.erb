@@ -1,0 +1,73 @@
+<% @page_title = "Select Course" %>
+   <div class="row">
+    <div class="col-sm-6">
+        <div class="well">
+        <% if !@courses.blank? %>
+          <table class="table">
+            <tr>
+                <th>Course Name</th>
+                <th>Add To List</th>
+            </tr>
+
+            <% @courses.each do |x| %>          
+            <tr>    
+                    <td><%= x.course_name %> ( <%= x.course_number %> )</td>   
+                    <td> 
+                        <%= link_to :controller => 'course', :action => 'add_course', :id => x.id  do %> 
+                            <span class='glyphicon glyphicon-plus' aria-hidden='true'></span>
+                        <%end%>
+                    </td>
+            </tr>
+            <%end%>
+          </table>
+        <%else%>
+            <p>There are no course for selected department.</p>
+        <% end %>
+        </div>
+
+    </div>
+    <div class="col-sm-6">
+        <div class="well">
+    <p>Modify Search</p><br />
+    <!-- Button trigger modal -->
+    <button  class = "btn btn-primary" type="button" data-toggle="modal" data-target="#submitReview" data-course="<%= @departments %>"> Change Department
+    </button> 
+     </div>
+
+    </div>
+</div>
+
+
+<!-- Modal -->
+    <div class="modal fade" id="submitReview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel"> Select Department </h4>
+          </div>
+          <div class="modal-body">
+                <% if !@departments.blank? %>
+                  <ul class="">
+                      <% @departments.each do |x| %>          
+                            <li class=""> 
+                                <%= link_to( :controller => 'Course',:action => 'select_course', :department => x ) do %>
+                                    <%= x %>
+                                <%end%>
+                            </li>
+                        <%end%>
+                  </ul>
+                <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<script>
+    $('#submitReview').on('shown.bs.modal', function () {
+      $('#submitReview').focus()
+    })
+</script>

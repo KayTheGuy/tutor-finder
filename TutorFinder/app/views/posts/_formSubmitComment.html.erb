@@ -1,0 +1,7 @@
+<%= simple_form_for @comment do |f| %>
+<%= f.error_notification %>
+<%= f.input :body, label: 'Comment', error: 'Please leave your comment', :input_html => {:minlength => 10 , maxlength: 100} %>
+<%= f.hidden_field :user_id, :hint => 'Leave this field blank!', :value => @current_user.id %>
+<%= f.hidden_field :post_id, :hint => 'Leave this field blank!', :value => @post.id %>
+<%= f.button :submit, "Add Comment", :class => "btn btn-default"%>
+<% end %>

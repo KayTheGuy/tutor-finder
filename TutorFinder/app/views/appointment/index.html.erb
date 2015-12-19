@@ -1,0 +1,110 @@
+<% @page_title = "My Appointments" %>
+<div class="well">
+ 
+<!--======================    RENDER CALENDAR    ======================-->
+
+    <h3>My Calendar</h3>
+    <%= month_calendar events: @calendar do |date, meetings| %>
+    <%= date.day %>
+      <% meetings.each do |meeting| %>
+        <div>
+            <% if meeting.tutorID == session[:user_id] && ( @user_info.role == 1 || @user_info.role == 2 ) %>
+                <%= link_to appointment_path(meeting) do %>
+                    <%= meeting.startTime.strftime("%I:%M%p") %> - <%= meeting.endTime.strftime("%I:%M%p") %>
+                    [Teaching]
+                    <%= User.find(meeting.studentID).first_name %>
+                    <%= Course.find(meeting.courseID).course_number %>
+                <% end %>
+            <% else %>
+                <%= link_to appointment_path(meeting) do %>
+                    <%= meeting.startTime.strftime("%I:%M%p") %> - <%= meeting.endTime.strftime("%I:%M%p") %>
+                    [Learning]
+                    <%= User.find(meeting.tutorID).first_name %>
+                    <%= Course.find(meeting.courseID).course_number %>
+                <% end %>
+            <%end%>
+        </div>
+      <% end %>
+    <% end %>
+    
+<!--======================    TUTORING AGENDA    ======================-->
+    <% if @user_info.role == 1 || @user_info.role == 2 %>
+    <h3>My Appointments (As Tutor)</h3>
+    <div class="table-responsive .col-lg-7">
+          <table class="table" summary="Appointments" >
+            <tr>
+                <th>Appointment Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Student Name</th>
+                <th>Course Name</th>
+                <th>Notes</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <% @agenda_tutor.each do |appointment| %>
+            <% course = Course.find(appointment.courseID)%>
+            <% user = User.find(appointment.studentID)%>
+                <tr>
+                    <td><%= appointment.apptDate %></td>
+                    <td><%= appointment.startTime.strftime("%I:%M%p") %></td>
+                    <td><%= appointment.endTime.strftime("%I:%M%p") %></td>
+                    <td><%= user.first_name %> <%= user.last_name %></td>
+                    <td><%= course.course_number %></td>
+                    <td><%= appointment.note %></td>    
+                    <td><%= link_to 'Show', appointment_path(appointment) %></td>
+                    <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
+                    <td><%= link_to 'Cancel', request_path(appointment), method: :delete,
+                        data: { confirm: 'Cancelling appointment. Are you sure?' } %>
+                    </td>
+                </tr>
+            <% end %>
+          </table>
+        <%= will_paginate @agenda_tutor %>
+    </div>
+    <div class="col-sm4"></div>
+    <div class="col-sm4"></div>
+    <%end%>
+    
+<!--======================    STUDENT AGENDA    ======================-->
+    <% if @user_info.role == 0 || @user_info.role == 2 %>
+    <h3>My Appointments (As Student)</h3>
+    <div class="table-responsive .col-lg-7">
+          <table class="table" summary="Appointments" >
+            <tr>
+                <th>Appointment Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Tutor Name</th>
+                <th>Course Name</th>
+                <th>Notes</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            <% @agenda_student.each do |appointment| %>
+            <% course = Course.find(appointment.courseID)%>
+            <% user = User.find(appointment.tutorID)%>
+                <tr>
+                    <td><%= appointment.apptDate %></td>
+                    <td><%= appointment.startTime.strftime("%I:%M%p") %></td>
+                    <td><%= appointment.endTime.strftime("%I:%M%p") %></td>
+                    <td><%= user.first_name %> <%= user.last_name %></td>
+                    <td><%= course.course_number %></td>
+                    <td><%= appointment.note %></td>    
+                    <td><%= link_to 'Show', appointment_path(appointment) %></td>
+                    <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
+                    <td><%= link_to 'Cancel', request_path(appointment), method: :delete,
+                        data: { confirm: 'Cancelling appointment. Are you sure?' } %>
+                    </td>
+                </tr>
+            <% end %>
+          </table>
+        <%= will_paginate @agenda_student %>
+    </div>
+    <div class="col-sm4"></div>
+    <div class="col-sm4"></div>
+    <%end%>
+    
+</div>

@@ -1,0 +1,15 @@
+<%= simple_form_for @user do |f| %>
+<%= f.error_notification %>
+<%= f.input :first_name, label: 'First Name', error: 'Please provide your First Name' %>
+<%= f.input :last_name, label: 'Last Name', error: 'Please provide your Last Name' %>
+<%= f.input :email, label: 'Email',error: 'Please provide a valid email address'%>
+<%= f.input :tel_number, label: 'Phone Number',require: false %>
+<%= f.input :password, label: 'Password', error: 'Please enter your password'%>
+<%= f.input :password_confirmation, label: 'Password Confirmation', error: 'Please re-type your password' %>
+<%= f.input :role ,label: 'I am a:', collection: [["Student",0],["Tutor",1],["Both",2]], priority: ["Student"], error: 'Please describe yourself'%>
+<%= f.input :photo, label:'Profile Picture', error: 'Image must be .png or .jpeg format'%>
+<%= f.button :submit do %>
+<i class="btn btn-primary"></i>
+Commit
+<% end %>
+<% end %>
